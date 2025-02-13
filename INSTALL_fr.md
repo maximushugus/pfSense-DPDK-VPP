@@ -1,9 +1,9 @@
-Introduction:
--------------
+Introduction :
+--------------
 Ce tutoriel a pour but de compiler DPDK pour pfSense.
 
-Pre-requis:
------------
+Pre-requis :
+------------
 Pour pouvoir compiler quoi que ce soit pour pfSense il faut :
 
 - Une machine sous FreeBSD avec un kernel d'une version égale ou supérieure à celle de pfSense
@@ -12,8 +12,8 @@ Pour pouvoir compiler quoi que ce soit pour pfSense il faut :
 - Se mettre en root sur le FreeBSD
 
 Pour connaître la version du kernel de pfSense on peut regarder sur ce lien.
-Installation des sources de pfSense:
-------------------------------------
+Installation des sources de pfSense :
+-------------------------------------
 1) Télécharger les sources de pfSense
 
 Il faut tout d'abord récupérer les sources de pfSense.
@@ -24,7 +24,7 @@ SI le dossier /usr/src n'est pas vide : cd /usr && rm -R /usr/src/
 
 Il faut ensuite télécharger ce sources avec git clone --branch RELENG_2_7_2 https://github.com/pfsense/FreeBSD-src /usr/src
 
-2)Compiler l'ensemble des programmes de pfSense
+2) Compiler l'ensemble des programmes de pfSense
 
 On va devoir compiler l'ensemble des binaires des sources de pfSense pour pouvoir créer un environnement de compilation pour nos programmes ou modules kernel.
 
@@ -35,10 +35,11 @@ Pour cela :
 - cd /usr/src/
 - make buildworld -j nombredecoeurCPU
 
-Création de l'environnement de compilation:
--------------------------------------------
+Création de l'environnement de compilation :
+--------------------------------------------
 Pour compiler nos binaires on va créer un environnement de compilation dans une Jail FreeBSD en utilisant Poudrière.
-1)Configuration de poudrière
+
+1) Configuration de poudrière
 
 On va créer le fichier de configuration de poudrière avec cp /usr/local/etc/poudriere.conf.sample /usr/local/etc/poudriere.conf
 
@@ -62,16 +63,16 @@ On s'assure de retirer les dépendances inutiles avec pkg autoremove
 
 On va créer notre environnement dans une jail en installant l'ensemble des binaires qu'on a préalablement compilés depuis les sources de pfSense avec poudriere jail -c -j pf272amd64 -a amd64 -m src=/usr/src -p HEAD
 
-Récupération des sources des ports:
------------------------------------
+Récupération des sources des ports :
+------------------------------------
 Pour récupérer la liste des ports on peut portsnap fetch update
 
 On peut vérifier qu'on a bien la liste en allant dans /usr/ports et parcourant tous les ports de programme disponibles à la compilation.
 
 (git clone https://github.com/freebsd/freebsd-ports /usr/ports)
 
-Compiler le port qu'on veut:
-----------------------------
+Compiler le port qu'on veut :
+-----------------------------
 1) Création de la liste de port qu'on veut compiler
 
 On va créer un ficher comprenant le chemin de fichier depuis /usr/ports jusqu'à la racine du dossier du port qu'on veut compiler. Par exemple echo net/dpdk > pkglist.txt
