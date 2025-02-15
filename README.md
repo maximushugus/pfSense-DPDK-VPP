@@ -11,4 +11,4 @@ pkg add vpp-24.06_1.pkg
 
 To build (for other pfSense versions / kernel):
 -----------------------------------------------
-See INSTALL_fr.md (for the moment in french)
+See BUILD_fr.md (for the moment in french) for instruction on how to build those packages
